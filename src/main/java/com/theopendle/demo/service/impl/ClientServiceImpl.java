@@ -2,11 +2,13 @@ package com.theopendle.demo.service.impl;
 
 import com.theopendle.demo.model.Client;
 import com.theopendle.demo.service.ClientService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class ClientServiceImpl implements ClientService {
 
     @Override
