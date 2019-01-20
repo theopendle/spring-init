@@ -22,7 +22,7 @@ public class ClientController {
     @GET
     @Produces(APPLICATION_JSON)
     //TODO: make safe
-    private List<Client> getClients() {
+    public List<Client> getClients() {
         return clientService.getClients();
     }
 }
