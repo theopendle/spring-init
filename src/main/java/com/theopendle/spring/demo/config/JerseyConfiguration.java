@@ -1,7 +1,7 @@
-package com.theopendle.demo.config;
+package com.theopendle.spring.demo.config;
 
-import com.theopendle.demo.controller.ClientController;
-import com.theopendle.demo.provider.GenericExceptionMapper;
+import com.theopendle.spring.demo.controller.ClientController;
+import com.theopendle.spring.demo.provider.GenericExceptionMapper;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
 

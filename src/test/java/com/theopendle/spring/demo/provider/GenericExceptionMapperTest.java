@@ -1,4 +1,4 @@
-package com.theopendle.demo.provider;
+package com.theopendle.spring.demo.provider;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +15,9 @@ public class GenericExceptionMapperTest {
     private static final String TEST_ERROR_MESSAGE = "Test message";
 
     @Test
-    public void test_toResponse() throws Exception {
-        GenericExceptionMapper genericExceptionMapper = new GenericExceptionMapper();
-        Response response = genericExceptionMapper.toResponse(new IllegalArgumentException(TEST_ERROR_MESSAGE));
+    public void test_toResponse() {
+        final GenericExceptionMapper genericExceptionMapper = new GenericExceptionMapper();
+        final Response response = genericExceptionMapper.toResponse(new IllegalArgumentException(TEST_ERROR_MESSAGE));
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), response.getStatus());
         assertEquals(TEST_ERROR_MESSAGE, response.getEntity());

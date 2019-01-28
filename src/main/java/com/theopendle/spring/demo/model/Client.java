@@ -1,10 +1,15 @@
-package com.theopendle.demo.model;
+package com.theopendle.spring.demo.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
+/**
+ * A simple Client bean for demo purposes.
+ *
+ * @author Theo Pendle
+ */
 @Accessors(chain = true)
 @Data
 public class Client implements Serializable {

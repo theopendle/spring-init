@@ -1,7 +1,7 @@
-package com.theopendle.demo.config;
+package com.theopendle.spring.demo.config;
 
-import com.theopendle.demo.controller.ClientController;
-import com.theopendle.demo.provider.GenericExceptionMapper;
+import com.theopendle.spring.demo.controller.ClientController;
+import com.theopendle.spring.demo.provider.GenericExceptionMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class JerseyConfigurationTest {
 
     @Test
     public void test_init() {
-        Set<Class<?>> classes = config.getClasses();
+        final Set<Class<?>> classes = config.getClasses();
         assertTrue(classes.contains(ClientController.class));
         assertTrue(classes.contains(GenericExceptionMapper.class));
     }
