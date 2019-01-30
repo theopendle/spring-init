@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -14,6 +15,9 @@ public class ClientMapperTest {
 
     @Autowired
     private ClientMapper mapper;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Test
     public void test_select_valid() {
@@ -27,6 +31,13 @@ public class ClientMapperTest {
         mapper.insertClient(client);
 
         Assert.assertNotNull(client.getId());
+    }
+
+    @Test
+    public void test_findByFirstName_valid() {
+        mapper.findByFirstName("Theo");
+//        Assert.assertNotNull(clients);
+//        Assert.assertFalse(clients.isEmpty());
     }
 
     private Client buildValidClient() {

@@ -14,6 +14,8 @@ public interface ClientMapper {
 
     @Insert("INSERT INTO clients (id, first_name, last_name) VALUES (#{id}, #{firstName}, #{lastName})")
     // Sets the object id to the id generated in database
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertClient(Client client);
+
+    Client findByFirstName(String firstName);
 }
