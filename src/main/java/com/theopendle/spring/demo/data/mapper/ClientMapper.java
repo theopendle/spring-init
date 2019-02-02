@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface ClientMapper {
 
@@ -17,5 +19,5 @@ public interface ClientMapper {
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertClient(Client client);
 
-    Client findByFirstName(String firstName);
+    List<Client> findByFirstName(String firstName);
 }
