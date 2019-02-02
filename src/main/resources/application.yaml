@@ -4,6 +4,3 @@ spring:
     driver: com.mysql.cj.jdbc.Driver
     username: spring_demo_api
     password: spring_demo_api*12C
-
-mybatis:
-  type-aliases-package: com.theopendle.spring.demo.model
