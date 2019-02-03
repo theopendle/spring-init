@@ -15,7 +15,7 @@ public class DataSourceHelperImpl implements DataSourceHelper {
 
     @Transactional
     @Override
-    public void insertClients() {
+    public void causeDataIntegrityViolationException() {
         // Create client OK to insert
         final Client ok = new Client()
                 .setFirstName("John")

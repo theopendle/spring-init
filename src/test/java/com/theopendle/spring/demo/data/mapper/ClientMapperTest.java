@@ -91,6 +91,6 @@ public class ClientMapperTest {
     }
 
     public Long count() {
-        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM CLIENTS", Long.class);
+        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM TEST.CLIENTS", Long.class);
     }
 }
