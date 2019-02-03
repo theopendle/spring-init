@@ -1,5 +1,11 @@
+DROP SCHEMA IF EXISTS TEST CASCADE;
+CREATE SCHEMA TEST;
+SET SCHEMA TEST;
+
 CREATE TABLE clients (
     id int(11) NOT NULL AUTO_INCREMENT,
     first_name varchar(45) NOT NULL,
-    last_name varchar(45) NOT NULL
+    last_name varchar(45) NOT NULL,
+
+    PRIMARY KEY (id)
 );

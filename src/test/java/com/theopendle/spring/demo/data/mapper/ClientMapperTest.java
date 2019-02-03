@@ -56,6 +56,14 @@ public class ClientMapperTest {
     }
 
     @Test
+    public void test_findAll_valid() {
+        final List<Client> clients = mapper.findAll();
+        Assert.assertNotNull(clients);
+        Assert.assertFalse(clients.isEmpty());
+        Assert.assertEquals(count(), new Long(clients.size()));
+    }
+
+    @Test
     public void test_findByFirstName_valid() {
         final List<Client> clients = mapper.findByFirstName("Theo");
         Assert.assertNotNull(clients);
@@ -80,5 +88,9 @@ public class ClientMapperTest {
         return new Client()
                 .setFirstName("John")
                 .setLastName("Doe");
+    }
+
+    public Long count() {
+        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM CLIENTS", Long.class);
     }
 }

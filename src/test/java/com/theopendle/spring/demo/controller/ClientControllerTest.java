@@ -31,6 +31,8 @@ public class ClientControllerTest extends JerseyTest {
     private ClientService clientService;
 
     private static final String BASE_PATH = "/clients";
+    private static final String FIRST_NAME = "Theo";
+    private static final String FIRST_NAME_PARAM = "firstName";
 
     @Test
     public void test_getClients_valid() {
@@ -42,6 +44,18 @@ public class ClientControllerTest extends JerseyTest {
         final Collection<Client> actual = response.readEntity(new GenericType<SafeCollection<Client>>() {
         }).getCollection();
         assertEquals(clientService.getClients(), actual);
+    }
+
+    @Test
+    public void test_getClientsByFirstName_valid() {
+        final Response response = target(BASE_PATH).queryParam(FIRST_NAME_PARAM, FIRST_NAME).request().get();
+
+        assertEquals(HttpStatus.OK_200.getStatusCode(), response.getStatus());
+        assertEquals(MediaType.APPLICATION_JSON, response.getMediaType().toString());
+
+        final Collection<Client> actual = response.readEntity(new GenericType<SafeCollection<Client>>() {
+        }).getCollection();
+        assertEquals(clientService.getClientsByFirstName(FIRST_NAME), actual);
     }
 
     @Override

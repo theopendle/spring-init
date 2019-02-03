@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -23,7 +24,11 @@ public class ClientController {
 
     @GET
     @Produces(APPLICATION_JSON)
-    public SafeCollection<Client> getClients() {
-        return new SafeCollection<>(clientService.getClients());
+    public SafeCollection<Client> getClients(@QueryParam("firstName") final String firstName) {
+        return new SafeCollection<>((
+                firstName == null) ?
+                clientService.getClients() :
+                clientService.getClientsByFirstName(firstName)
+        );
     }
 }

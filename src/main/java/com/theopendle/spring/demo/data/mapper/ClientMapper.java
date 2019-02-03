@@ -14,6 +14,9 @@ public interface ClientMapper {
     @Select("SELECT id as id, first_name as firstName, last_name as lastName FROM clients WHERE id = #{id}")
     Client selectOne(long id);
 
+    @Select("SELECT id as id, first_name as firstName, last_name as lastName FROM clients")
+    List<Client> findAll();
+
     @Insert("INSERT INTO clients (id, first_name, last_name) VALUES (#{id}, #{firstName}, #{lastName})")
     // Sets the object id to the id generated in database
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
