@@ -7,10 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -23,6 +21,13 @@ public class ClientController {
     private ClientService clientService;
 
     @GET
+    @Path("/{id}")
+    @Produces(APPLICATION_JSON)
+    public Client getClient(@PathParam("id") final Long id) {
+        return clientService.getClient(id);
+    }
+
+    @GET
     @Produces(APPLICATION_JSON)
     public SafeCollection<Client> getClients(@QueryParam("firstName") final String firstName) {
         return new SafeCollection<>((
@@ -30,5 +35,12 @@ public class ClientController {
                 clientService.getClients() :
                 clientService.getClientsByFirstName(firstName)
         );
+    }
+
+    @POST
+    @Consumes(APPLICATION_JSON)
+    public Response createClient(final Client client) {
+        clientService.createClient(client);
+        return Response.ok().build();
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +34,18 @@ public class ClientControllerTest extends JerseyTest {
     private static final String BASE_PATH = "/clients";
     private static final String FIRST_NAME = "Theo";
     private static final String FIRST_NAME_PARAM = "firstName";
+
+    @Test
+    public void test_getClient_valid() {
+        final Long id = 1L;
+        final Response response = target(BASE_PATH).path(Long.toString(id)).request().get();
+
+        assertEquals(HttpStatus.OK_200.getStatusCode(), response.getStatus());
+        assertEquals(MediaType.APPLICATION_JSON, response.getMediaType().toString());
+
+        final Client actual = response.readEntity(Client.class);
+        assertEquals(clientService.getClient(id), actual);
+    }
 
     @Test
     public void test_getClients_valid() {
@@ -56,6 +69,23 @@ public class ClientControllerTest extends JerseyTest {
         final Collection<Client> actual = response.readEntity(new GenericType<SafeCollection<Client>>() {
         }).getCollection();
         assertEquals(clientService.getClientsByFirstName(FIRST_NAME), actual);
+    }
+
+    @Test
+    public void test_createClient_valid() {
+        final Client client = new Client()
+                .setFirstName("Peter")
+                .setLastName("Parker");
+        final Response response = target(BASE_PATH).request().post(Entity.entity(client, MediaType.APPLICATION_JSON));
+
+        assertEquals(HttpStatus.OK_200.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void test_createClient_invalidPayload() {
+        final Response response = target(BASE_PATH).request().post(Entity.entity("Peter Parker", MediaType.APPLICATION_JSON));
+
+        assertEquals(HttpStatus.BAD_REQUEST_400.getStatusCode(), response.getStatus());
     }
 
     @Override

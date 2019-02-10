@@ -20,6 +20,11 @@ public class ClientServiceImpl implements ClientService {
     private ClientMapper clientMapper;
 
     @Override
+    public Client getClient(final Long id) {
+        return clientMapper.selectOne(id);
+    }
+
+    @Override
     public List<Client> getClients() {
         return clientMapper.findAll();
     }
@@ -27,5 +32,10 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<Client> getClientsByFirstName(final String firstName) {
         return clientMapper.findByFirstName(firstName);
+    }
+
+    @Override
+    public void createClient(final Client client) {
+        clientMapper.insertClient(client);
     }
 }

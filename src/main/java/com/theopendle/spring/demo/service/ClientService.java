@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface ClientService {
 
+    Client getClient(Long id);
+
     /**
      * Returns all clients.
      */
@@ -20,4 +22,6 @@ public interface ClientService {
      * Returns all clients with who's firstName property matches firstName
      */
     List<Client> getClientsByFirstName(String firstName);
+
+    void createClient(Client client);
 }

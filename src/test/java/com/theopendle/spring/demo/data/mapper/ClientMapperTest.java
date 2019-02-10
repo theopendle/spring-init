@@ -23,13 +23,13 @@ public class ClientMapperTest {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    public void test_select_valid() {
+    public void test_selectOne_valid() {
         final Client client = mapper.selectOne(1);
         Assert.assertNotNull(client);
     }
 
     @Test
-    public void test_select_invalid() {
+    public void test_selectOne_invalid() {
         final Client client = mapper.selectOne(-1);
         Assert.assertNull(client);
     }
