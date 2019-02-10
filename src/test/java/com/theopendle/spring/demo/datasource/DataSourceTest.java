@@ -36,9 +36,6 @@ public class DataSourceTest {
     @Value("${spring.datasource.hikari.maximum-pool-size}")
     private int maxPoolSize;
 
-    @Value("${spring.datasource.hikari.connection-timeout}")
-    private int timeout;
-
     @Test
     public void test_rollback() {
         final Long before = count();
