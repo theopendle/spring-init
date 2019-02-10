@@ -7,3 +7,8 @@ spring:
 
     hikari:
       maximum-pool-size: 10
+
+mybatis:
+  mapper-locations: classpath*:/mybatis/*.xml
+  type-aliases-package: com.theopendle.spring.demo.model
+
